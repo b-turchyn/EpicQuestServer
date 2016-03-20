@@ -1,0 +1,20 @@
+{
+  "name": "EpicQuestServer",
+  "version": "0.1.0",
+  "description": "Server for Epic Quest",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Turchyn",
+  "license": "MIT",
+  "dependencies": {
+    "socket.io": "^1.4.5",
+    "passport": "^0.3.2",
+    "express": "^4.13.4",
+    "passport-local": "^1.0.0",
+    "morgan": "^1.7.0",
+    "body-parser": "^1.15.0",
+    "method-override": "^2.3.5"
+  }
+}
