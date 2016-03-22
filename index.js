@@ -4,7 +4,6 @@ var LocalStrategy = require('passport-local').Strategy;
 var http = require('http');
 var io = require('socket.io')(3001);
 var util = require('util');
-var randomstring = require('randomstring');
 var db = require('./lib/db');
 
 passport.serializeUser(function(user, done) {
@@ -33,9 +32,11 @@ app.post('/api/v1/login',
     passport.authenticate('local'),
     function(req, res) {
       console.log('Passed authentication');
-      res.json({
-        result: true,
-        token: randomstring.generate(64)
+      db.getNewToken(req.user.id, req.client.remoteAddress, function(token) {
+        res.json({
+          result: true,
+          token: token
+        });
       });
 });
 
