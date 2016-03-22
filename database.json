@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "user": "epicquest",
+    "password": "epicquest",
+    "database": "epicquest_development",
+    "host": "localhost",
+    "multipleStatements": true
+  }
+}
