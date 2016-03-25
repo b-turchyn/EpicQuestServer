@@ -1,3 +1,6 @@
+[![Code Climate](https://codeclimate.com/github/b-turchyn/EpicQuestServer/badges/gpa.svg)](https://codeclimate.com/github/b-turchyn/EpicQuestServer)
+[![Test Coverage](https://codeclimate.com/github/b-turchyn/EpicQuestServer/badges/coverage.svg)](https://codeclimate.com/github/b-turchyn/EpicQuestServer/coverage)
+
 # Epic Quest Server
 
 This project is a proof-of-concept for how one could create a multi-user game
