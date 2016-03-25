@@ -15,35 +15,36 @@ exports.setup = function(options, seedLink) {
 };
 
 exports.up = function(db, cb) {
-  db.createTable('user', {
-    id: {
+  db.createTable('token', {
+    id: { type: 'int', primaryKey: true, autoIncrement: true },
+    user_id: {
       type: 'int',
       unsigned: true,
       notNull: true,
       length: 10,
-      primaryKey: true,
-      autoIncrement: true,
+      foreignKey: {
+        name: 'token_user_id_fk',
+        table: 'user',
+        rules: {
+          onDelete: 'RESTRICT',
+          onUpdate: 'RESTRICT'
+        },
+        mapping: 'id'
+      }
     },
-    username: {
+    token: {
       type: 'string',
       length: 64,
-      unique: true,
       notNull: true
     },
-    password: {
+    ip_address: {
       type: 'string',
-      length: 64,
+      length: 39,
       notNull: true
-    },
-    salt: {
-      type: 'string',
-      length: 256,
-      notNull: true
-    },
-    last_ip_address: { type: 'string', length: 39 },
+    }
   }, cb);
 };
 
 exports.down = function(db, cb) {
-  db.dropTable('user', cb);
+  db.dropTable('token', cb);
 };
