@@ -2,9 +2,9 @@ var express = require('express');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var http = require('http');
-var io = require('socket.io')(3001);
 var util = require('util');
 var db = require('./lib/db');
+var gameserver = require('./lib/gameserver');
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -41,12 +41,5 @@ app.post('/api/v1/login',
 });
 
 app.listen(3000);
-
-io.on('connection', function(socket) {
-  io.emit('this', { will: 'be received by everyone' });
-
-  socket.on('ferret', function(name, fn) {
-    fn('woot');
-  });
-});
+gameserver.gameserver(3001, db);
 
