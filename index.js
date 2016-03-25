@@ -22,7 +22,7 @@ app.use(passport.initialize());
 
 passport.use(new LocalStrategy(
   function(user, password, done) {
-    result = db.authenticateUser(user, password, function(result) {
+    result = db.user.authenticate(user, password, function(result) {
       return done(null, result);
     });
   }
@@ -32,13 +32,28 @@ app.post('/api/v1/login',
     passport.authenticate('local'),
     function(req, res) {
       console.log('Passed authentication');
-      db.getNewToken(req.user.id, req.client.remoteAddress, function(token) {
+      db.token.generateToken(req.user.id, req.client.remoteAddress, function(token) {
         res.json({
           result: true,
           token: token
         });
       });
 });
+
+app.post('/api/v1/register',
+    function(req, res) {
+      console.log('Attempting to register user');
+      db.user.register(req.body.username, req.body.password, function(err, user) {
+        console.log("result: " + user);
+        if (!user) {
+          res.status(403).send(err);
+        } else {
+          res.json({
+            result: !!user
+          });
+        }
+      });
+    });
 
 app.listen(3000);
 gameserver.gameserver(3001, db);
