@@ -15,6 +15,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 var app = express();
+app.use(express.static('./public'));
 app.use(require('morgan')('combined'));
 app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(passport.initialize());
