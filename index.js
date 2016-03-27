@@ -57,5 +57,8 @@ app.post('/api/v1/register',
     });
 
 app.listen(3000);
+
+console.log('API Server listening on port ' + 3000);
+
 gameserver.gameserver(3001, db);
 
