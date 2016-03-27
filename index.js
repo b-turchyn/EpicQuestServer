@@ -41,6 +41,17 @@ app.post('/api/v1/login',
       });
 });
 
+app.get('/api/v1/patches',
+    function(req, res) {
+      db.patch.getPatchesSince(req.query.major,
+                               req.query.minor,
+                               req.query.patch,
+                               function(result) {
+                                 console.log('result: ' + result);
+                                 res.json(result || {});
+                               });
+    });
+
 app.post('/api/v1/register',
     function(req, res) {
       console.log('Attempting to register user');
